@@ -4,6 +4,7 @@ import com.ershat.applicationProcessing.dto.CreatePurchaseRequestDto;
 import com.ershat.applicationProcessing.dto.UpdateStatusDto;
 import com.ershat.applicationProcessing.entity.PurchaseRequest;
 import com.ershat.applicationProcessing.service.PurchaseRequestService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class PurchaseRequestController {
     }
 
     @PostMapping
-    public PurchaseRequest create(@RequestBody CreatePurchaseRequestDto dto) {
+    public PurchaseRequest create(@Valid @RequestBody CreatePurchaseRequestDto dto) {
         return service.create(dto);
     }
 
@@ -30,4 +31,5 @@ public class PurchaseRequestController {
     public PurchaseRequest updateStatus(@PathVariable Long id, @RequestBody UpdateStatusDto dto) {
         return service.updateStatus(id, dto);
     }
+
 }
