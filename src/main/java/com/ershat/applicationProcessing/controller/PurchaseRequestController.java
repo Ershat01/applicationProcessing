@@ -1,7 +1,8 @@
 package com.ershat.applicationProcessing.controller;
 
+import com.ershat.applicationProcessing.dto.CreatePurchaseRequestDto;
 import com.ershat.applicationProcessing.entity.PurchaseRequest;
-import com.ershat.applicationProcessing.repository.PurchaseRequestRepository;
+import com.ershat.applicationProcessing.service.PurchaseRequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,15 +13,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PurchaseRequestController {
 
-    private final PurchaseRequestRepository repository;
+    private final PurchaseRequestService service;
 
     @GetMapping
     public List<PurchaseRequest> getAll() {
-        return repository.findAll();
+        return service.getAll();
     }
 
     @PostMapping
-    public PurchaseRequest create(@RequestBody PurchaseRequest request) {
-        return repository.save(request);
+    public PurchaseRequest create(@RequestBody CreatePurchaseRequestDto dto) {
+        return service.create(dto);
     }
 }
