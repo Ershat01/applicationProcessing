@@ -1,6 +1,7 @@
 package com.ershat.applicationProcessing.controller;
 
 import com.ershat.applicationProcessing.dto.CreatePurchaseRequestDto;
+import com.ershat.applicationProcessing.dto.UpdateStatusDto;
 import com.ershat.applicationProcessing.entity.PurchaseRequest;
 import com.ershat.applicationProcessing.service.PurchaseRequestService;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,10 @@ public class PurchaseRequestController {
     @PostMapping
     public PurchaseRequest create(@RequestBody CreatePurchaseRequestDto dto) {
         return service.create(dto);
+    }
+
+    @PatchMapping("/{id}/status")
+    public PurchaseRequest updateStatus(@PathVariable Long id, @RequestBody UpdateStatusDto dto) {
+        return service.updateStatus(id, dto);
     }
 }
